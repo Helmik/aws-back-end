@@ -35,6 +35,11 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
     },
+    swagger: {
+      title: 'Tequila store',
+      generateSwaggerOnDeploy: true,
+      basePath: 'https://izdev73924.execute-api.us-east-1.amazonaws.com/dev'
+    }
   },
 };
 
