@@ -12,3 +12,8 @@
 ## Swagger
 [API](https://kgx2wc0zc1.execute-api.us-east-1.amazonaws.com/swagger)
 
+## Get product list endpoint
+[product list](https://izdev73924.execute-api.us-east-1.amazonaws.com/dev/product/getProductList)
+
+## Get product by id endopoint
+[...product/getProductById?productId=number](https://izdev73924.execute-api.us-east-1.amazonaws.com/dev/product/getProductById?productId=1)
