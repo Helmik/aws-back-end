@@ -2,12 +2,14 @@ import type { AWS } from '@serverless/typescript';
 
 import getProductList from '@functions/getProductList';
 import getProductById from '@functions/getProductById';
+import addProduct from '@functions/addProduct';
 
 const serverlessConfiguration: AWS = {
-  service: 'products',
+  useDotenv: true,
+  service: 'tequila-store',
   frameworkVersion: '3',
-  plugins: ['serverless-auto-swagger', 'serverless-esbuild'],
-  // plugins: ['serverless-esbuild'],
+  // plugins: ['serverless-auto-swagger', 'serverless-esbuild'],
+  plugins: ['serverless-esbuild', 'serverless-dotenv-plugin'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -22,7 +24,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { getProductList, getProductById },
+  functions: { getProductList, getProductById, addProduct },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -35,10 +37,9 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
     },
-    swagger: {
+    autoswagger: {
       title: 'Tequila store',
-      generateSwaggerOnDeploy: true,
-      basePath: 'https://izdev73924.execute-api.us-east-1.amazonaws.com/dev'
+      generateSwaggerOnDeploy: true
     }
   },
 };
