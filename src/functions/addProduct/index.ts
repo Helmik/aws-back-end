@@ -7,11 +7,11 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'product/products'
-      },
-      request: {
-        schemas: {
-          'application/json': schema,
+        path: 'product/products',
+        request: {
+          schemas: {
+            'application/json': schema,
+          },
         },
       },
     },

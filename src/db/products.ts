@@ -2,6 +2,22 @@ import TequilaInterface from 'src/interfaces/Tequila.interface';
 import { TABLE } from 'src/utils/consts';
 import { mysql, basicSelect, closeConnection } from './db-conf';
 import products from '../utils/products';
+import DataBase from './DataBase';
+
+export class ProductClass {
+  private db: DataBase;
+  constructor () {
+    this.db = new DataBase();
+    this.db.connect();
+  }
+
+  async getProductList(): Promise<TequilaInterface[]> {
+    const sql = "SELECT * FROM products";
+    const { results } = await this.db.query({ sql });
+    this.db.closeConnection();
+    return results;
+  }
+}
 
 async function createProductsTable(): Promise<void> {
   const sql = 'CREATE TABLE IF NOT EXISTS products ('
