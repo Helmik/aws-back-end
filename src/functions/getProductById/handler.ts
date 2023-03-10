@@ -1,8 +1,8 @@
 import { errorResponse } from '@libs/api-gateway';
 import { successResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
+import Products from 'src/DataBase/Products';
 import TequilaInterface from 'src/interfaces/Tequila.interface';
-import products from 'src/utils/products';
 
 const getProductById = async (event) => {
   const { productId } = JSON.parse(JSON.stringify(event.queryStringParameters));
@@ -18,9 +18,9 @@ const getProductById = async (event) => {
     errorMessage = 'id should be a number'
     statusCode = 400;
   } else {
-    product = products.find(p => p.id === id);
+    product = await Products.getProductById(id);
 
-    if (!product) {
+    if (product === null) {
       errorMessage = 'Product not found'
       statusCode = 403;
     }

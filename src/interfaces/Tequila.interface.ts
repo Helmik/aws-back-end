@@ -1,7 +1,8 @@
 export default interface TequilaInterface {
-    id: number;
-    title: String;
-    description: String;
+    id?: number;
+    title: string;
+    description: string;
     price: number;
-    img: String;
+    img: string;
+    stock?: number
 };
