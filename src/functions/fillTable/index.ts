@@ -6,14 +6,7 @@ export default {
     {
       http: {
         method: 'get',
-        path: 'product/getProductById',
-        request: {
-          parameters: {
-            querystrings: {
-              productId: true
-            }
-          }
-        }
+        path: 'product/fillTable'
       },
     },
   ],

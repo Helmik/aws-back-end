@@ -1,11 +1,13 @@
-import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
+import { errorResponse } from '@libs/api-gateway';
 import { successResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import products from 'src/utils/products';
+import Products from 'src/DataBase/Products';
 
-import schema from './schema';
-
-const getProductList: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async () => {
+const getProductList = async () => {
+  const products = await Products.getProductList();
+  if (products === null) {
+    return errorResponse('Error on try to get products', 500);
+  }
   return successResponse(products);
 };
 

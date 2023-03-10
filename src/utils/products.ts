@@ -1,6 +1,6 @@
 import TequilaInterface from "src/interfaces/Tequila.interface";
 
-const products: TequilaInterface[] = [
+const MOCK_PRODUCTS: TequilaInterface[] = [
   { id: 1, title: 'José cuervo', price: 500, img: 'https://tequila-img.s3.us-east-2.amazonaws.com/tequilas/jose-cuervo.webp', description: 'Short description'},
   { id: 2, title: 'Herradura', price: 1232, img: 'https://tequila-img.s3.us-east-2.amazonaws.com/tequilas/herradura.webp', description: 'Short description'},
   { id: 3, title: 'Hornitos', price: 4232, img: 'https://tequila-img.s3.us-east-2.amazonaws.com/tequilas/hornitos.webp', description: 'Short description'},
@@ -16,4 +16,4 @@ const products: TequilaInterface[] = [
   { id: 13, title: 'Don Julio', price: 573, img: 'https://tequila-img.s3.us-east-2.amazonaws.com/tequilas/don-julio.webp', description: 'Short description'},
 ];
 
-export default products;
+export default MOCK_PRODUCTS;
