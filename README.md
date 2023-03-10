@@ -2,7 +2,7 @@
 
 
 ## Back-end repository (pull request)
-[Task 4](https://github.com/Helmik/aws-back-end/pull/1)
+[Task 4](https://github.com/Helmik/aws-back-end/pull/2)
 ## Front-end (pull reqyest)
 [Task 4](https://github.com/Helmik/tequil-shop/pull/2)
 
