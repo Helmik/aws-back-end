@@ -40,6 +40,47 @@ const serverlessConfiguration: AWS = {
       }
     ],
   },
+  // resources: {
+  //   Resources: {
+  //     dynamoAccess: {
+  //       Type: 'AWS::IAM::Role',
+  //       Properties: {
+  //         RoleName: 'dynamoProductsAccess',
+  //         AssumeRolePolicyDocument: {
+  //           Version: '2012-10-17',
+  //           Statement: {
+  //             Effect: 'Allow',
+  //             Principal: {
+  //               Service: ['lambda.amazonaws.com']
+  //             },
+  //             Action: 'sts:AssumeRole'
+  //           }
+  //         },
+  //         Policies: [{
+  //           PolicyName: 'dynamoPolice',
+  //           PolicyDocument: {
+  //             Version: '2012-10-17',
+  //             Statement: {
+  //               Effect: 'Allow',
+  //               Action: [
+  //                 'dynamodb:Query',
+  //                 'dynamodb:Scan',
+  //                 'dynamodb:GetItem',
+  //                 'dynamodb:PutItem',
+  //                 'dynamodb:UpdateItem',
+  //                 'dynamodb:DeleteItem',
+  //               ],
+  //               Resource: [
+  //                 'arn:aws:dynamodb:us-east-1:057519801860:table/products',
+  //                 'arn:aws:dynamodb:us-east-1:057519801860:table/stocks'
+  //               ]
+  //             }
+  //           }
+  //         }]
+  //       }
+  //     }
+  //   }
+  // },
   // import the function via paths
   functions: { getProductList, getProductById, addProduct, fillTable },
   package: { individually: true },

@@ -4,5 +4,5 @@ export default interface TequilaInterface {
     description: string;
     price: number;
     img: string;
-    stock?: number
+    count?: number
 };
