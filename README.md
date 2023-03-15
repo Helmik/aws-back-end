@@ -1,13 +1,15 @@
-# Task 4 (Data Base)
+# Task 5 (S3 Files)
 
 
 ## Back-end repository (pull request)
-[Task 4](https://github.com/Helmik/aws-back-end/pull/2)
+[Task 5](https://github.com/Helmik/aws-back-end/pull/3)
+
 ## Front-end (pull reqyest)
-[Task 4](https://github.com/Helmik/tequil-shop/pull/2)
+[Task 4](https://github.com/Helmik/tequil-shop/pull/3)
 
 ## Web site
 [CloudFront](http://tequila-store-het.s3-website-us-east-1.amazonaws.com/)
+[Admin products portal](http://tequila-store-het.s3-website-us-east-1.amazonaws.com/admin/products)
 
 ## Get product list endpoint
 [product list](https://gjf0okujn9.execute-api.us-east-1.amazonaws.com/dev/product/getProductList)
