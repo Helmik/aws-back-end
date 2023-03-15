@@ -28,7 +28,7 @@ export default class Products {
     }
     products.forEach(product => {
       let stock = stocks.find(stock => stock.id === product.id);
-      product.stock = stock ? stock.count : 0;
+      product.count = stock ? stock.count : 0;
     });
     return products;
   }
@@ -47,7 +47,7 @@ export default class Products {
           }
           const tequila = data.Items[0] as TequilaInterface;
           const stock = await Stocks.getStockById(tequila.id);
-          tequila.stock = stock.count;
+          tequila.count = stock.count;
           return resolve(tequila);
         })
     });
@@ -62,7 +62,7 @@ export default class Products {
           console.log(error);
           return resolve(null);
         }
-        await Stocks.addStock({ id: _product.id, count: _product.stock});
+        await Stocks.addStock({ id: _product.id, count: _product.count});
         return resolve(_product as TequilaInterface);
       })
     });
@@ -84,7 +84,7 @@ export default class Products {
       description: product.description,
       price: product.price,
       img: product.img,
-      stock: product.stock || 0
+      count: product.count || 0
     }
   }
 
