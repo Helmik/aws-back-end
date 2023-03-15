@@ -1,22 +1,22 @@
 {
-  "name": "products",
-  "version": "1.0.0",
+  "name": "import-service",
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test-get-lsit": "serverless invoke local --function getProductList --path src/functions/getProductList/mock.json",
-    "test-get-by-id": "serverless invoke local --function getProductById --path src/functions/getProductById/mock.json",
-    "test-add-product": "serverless invoke local --function addProduct --path src/functions/addProduct/mock.json",
-    "test-fill-table": "serverless invoke local --function fillTable --path src/functions/fillTable/mock.json"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
     "node": ">=14.15.0"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.290.0",
+    "@aws-sdk/credential-providers": "^3.291.0",
+    "@aws-sdk/s3-request-presigner": "^3.290.0",
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
-    "aws-sdk": "^2.1331.0"
+    "aws-sdk": "^2.1331.0",
+    "csv-parser": "^3.0.0",
+    "serverless-dotenv-plugin": "^4.0.2"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
@@ -25,8 +25,6 @@
     "esbuild": "^0.14.11",
     "json-schema-to-ts": "^1.5.0",
     "serverless": "^3.0.0",
-    "serverless-auto-swagger": "^2.12.0",
-    "serverless-dotenv-plugin": "^4.0.2",
     "serverless-esbuild": "^1.23.3",
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.9.0",
