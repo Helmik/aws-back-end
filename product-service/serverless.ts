@@ -3,7 +3,7 @@ import type { AWS } from '@serverless/typescript';
 import getProductList from '@functions/getProductList';
 import getProductById from '@functions/getProductById';
 import addProduct from '@functions/addProduct';
-import fillTable from '@functions/fillTable';
+import catalogBatchProcess from '@functions/catalogBatchProcess';
 
 const serverlessConfiguration: AWS = {
   useDotenv: true,
@@ -37,52 +37,44 @@ const serverlessConfiguration: AWS = {
           'arn:aws:dynamodb:us-east-1:057519801860:table/products',
           'arn:aws:dynamodb:us-east-1:057519801860:table/stocks'
         ],
-      }
+      },
+      {
+        Effect: 'Allow',
+        Action: [
+          'sqs:ReceiveMessage',
+          'sqs:DeleteMessage',
+        ],
+        Resource: ['arn:aws:sqs:us-east-1:057519801860:catalogItemsQueue'],
+      },
+      {
+        Effect: 'Allow',
+        Action: [
+          'sns:Publish',
+        ],
+        Resource: ['arn:aws:sns:us-east-1:057519801860:createProductTopic'],
+      },
     ],
   },
-  // resources: {
-  //   Resources: {
-  //     dynamoAccess: {
-  //       Type: 'AWS::IAM::Role',
-  //       Properties: {
-  //         RoleName: 'dynamoProductsAccess',
-  //         AssumeRolePolicyDocument: {
-  //           Version: '2012-10-17',
-  //           Statement: {
-  //             Effect: 'Allow',
-  //             Principal: {
-  //               Service: ['lambda.amazonaws.com']
-  //             },
-  //             Action: 'sts:AssumeRole'
-  //           }
-  //         },
-  //         Policies: [{
-  //           PolicyName: 'dynamoPolice',
-  //           PolicyDocument: {
-  //             Version: '2012-10-17',
-  //             Statement: {
-  //               Effect: 'Allow',
-  //               Action: [
-  //                 'dynamodb:Query',
-  //                 'dynamodb:Scan',
-  //                 'dynamodb:GetItem',
-  //                 'dynamodb:PutItem',
-  //                 'dynamodb:UpdateItem',
-  //                 'dynamodb:DeleteItem',
-  //               ],
-  //               Resource: [
-  //                 'arn:aws:dynamodb:us-east-1:057519801860:table/products',
-  //                 'arn:aws:dynamodb:us-east-1:057519801860:table/stocks'
-  //               ]
-  //             }
-  //           }
-  //         }]
-  //       }
-  //     }
-  //   }
-  // },
-  // import the function via paths
-  functions: { getProductList, getProductById, addProduct, fillTable },
+  functions: { getProductList, getProductById, addProduct, catalogBatchProcess },
+  resources: {
+    Resources: {
+      createProductTopic: {
+        Type: 'AWS::SNS::Topic',
+        Properties: {
+          DisplayName: 'createProductTopic',
+          TopicName: 'createProductTopic'
+        }
+      },
+      emailSubscription: {
+        Type: 'AWS::SNS::Subscription',
+        Properties: {
+          Protocol: 'email',
+          Endpoint: 'helmik-aws@mailinator.com',
+          TopicArn: { Ref: 'createProductTopic' }
+        }
+      }
+    }
+  },
   package: { individually: true },
   custom: {
     esbuild: {

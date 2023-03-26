@@ -17,15 +17,3 @@ export default {
     },
   ],
 };
-
-
-// {
-//   bucket: string | AwsCfFunction | AwsCfIf;
-//   event?: string;
-//   existing?: boolean;
-//   forceDeploy?: boolean;
-//   rules?: {
-//     prefix?: string | AwsCfFunction;
-//     suffix?: string | AwsCfFunction;
-//   }[];
-// };

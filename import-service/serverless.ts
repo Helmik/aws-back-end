@@ -37,11 +37,30 @@ const serverlessConfiguration: AWS = {
         Resource: [
           'arn:aws:s3:::tequila-files/*'
         ],
-      }
+      },
+      {
+        Effect: 'Allow',
+        Action: [
+          'sqs:sendMessage'
+        ],
+        Resource: {
+          'Fn::GetAtt': ['catalogItemsQueue', 'Arn'],
+        },
+      },
     ],
   },
   // import the function via paths
   functions: { importProductsFile, importFileParser },
+  resources: {
+    Resources: {
+      catalogItemsQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {
+          QueueName: 'catalogItemsQueue',
+        },
+      },
+    },
+  },
   package: { individually: true },
   custom: {
     esbuild: {
