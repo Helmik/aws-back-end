@@ -1,11 +1,8 @@
-# Task 5 (S3 Files)
+# Task 6 (SQS and SNS)
 
 
 ## Back-end repository (pull request)
-[Task 5](https://github.com/Helmik/aws-back-end/pull/3)
-
-## Front-end (pull reqyest)
-[Task 4](https://github.com/Helmik/tequil-shop/pull/3)
+[Task 5](https://github.com/Helmik/aws-back-end/pull/4)
 
 ## Web site
 [CloudFront](http://tequila-store-het.s3-website-us-east-1.amazonaws.com/)
@@ -26,3 +23,6 @@ description: string (optional)
 price: integer
 img: string (url)
 stock: number (optional)
+
+## SNS subscribed email
+[helmik-aws@mailinator.com](https://www.mailinator.com/v4/public/inboxes.jsp?msgid=helmik-aws-1679874899-221283717&to=helmik-aws#)
