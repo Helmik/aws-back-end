@@ -1,7 +1,50 @@
 import { errorResponse, successResponse } from '@libs/api-gateway';
-// import {} from 'csv-parser';
-import { S3 } from 'aws-sdk';
+import { S3, SQS } from 'aws-sdk';
+
 const csv = require('csv-parser');
+const sqs = new SQS();
+const quequeUrl = process.env.queque_url;
+
+const sendMessage = (data) => {
+  return new Promise(((resolve, reject) => {
+    sqs.sendMessage(
+      {
+        MessageAttributes: {
+          title: {
+            DataType: "String",
+            StringValue: data.title
+          },
+          description: {
+            DataType: "String",
+  
+  
+            StringValue: data.description
+          },
+          price: {
+            DataType: "Number",
+            StringValue: data.price
+          },
+          count: {
+            DataType: "Number",
+            StringValue: data.count
+          }
+        },
+        QueueUrl: quequeUrl,
+        MessageBody: JSON.stringify(data),
+      },
+      (error) => {
+        if (error) {
+          console.error(error);
+          reject(error);
+        } else {
+          console.log(`Message sent: ${JSON.stringify(data)}`);
+          resolve(data);
+        }
+      }
+    );
+  }))
+};
+
 
 var readFile = (file) => {
   return new Promise(resolve => {
@@ -9,17 +52,20 @@ var readFile = (file) => {
     file
       .pipe(csv())
       .on('data', function (data) {
-          console.log(data);
-          results.push(data);
+        console.log(data);
+        results.push(data);
       })
-      .on('end', () => {
-          console.log(results);
-          resolve(results);
+      .on('end', async () => {
+        const promises = results.map((data) => sendMessage(data));
+        const products = await Promise.all(promises);
+        console.log(products);
+        resolve(products);
       });
   });
 }
 
 const importFileParser = async (event) => {
+  console.log(quequeUrl);
   const { bucket, object } = event.Records[0].s3;
   const region: string = event.Records[0].awsRegion;
   const s3 = new S3({ region });

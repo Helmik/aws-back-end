@@ -1,5 +1,5 @@
 {
-  "body": "eyJ0ZXN0IjoiYm9keSJ9",
+  "body": "{ \"title\": \"title\", \"description\": \"description\", \"price\": \"123\", \"img\": \"img\", \"stock\": 23 }",
   "resource": "/{proxy+}",
   "path": "/path/to/resource",
   "httpMethod": "POST",

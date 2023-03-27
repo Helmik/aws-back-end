@@ -4,10 +4,10 @@ export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
   events: [
     {
-      http: {
-        method: 'get',
-        path: 'product/fillTable'
-      },
+      sqs: {
+        arn: 'arn:aws:sqs:us-east-1:057519801860:catalogItemsQueue',
+        batchSize: 5
+      }
     },
   ],
 };
