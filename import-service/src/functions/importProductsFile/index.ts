@@ -13,6 +13,12 @@ export default {
               name: true
             }
           }
+        },
+        cors: true,
+        authorizer: {
+          arn: 'arn:aws:lambda:us-east-1:057519801860:function:authorization-service-dev-basicAuthorizer',
+          type: 'token',
+          resultTtlInSeconds: 0
         }
       },
     },
