@@ -1,8 +1,11 @@
-# Task 6 (SQS and SNS)
+# Task 7 (Autorization)
 
 
 ## Back-end repository (pull request)
-[Task 5](https://github.com/Helmik/aws-back-end/pull/4)
+[Task 7](https://github.com/Helmik/aws-back-end/pull/5)
+
+## Front-end repository (pull request)
+[Task 7](https://github.com/Helmik/tequil-shop/pull/4)
 
 ## Web site
 [CloudFront](http://tequila-store-het.s3-website-us-east-1.amazonaws.com/)
